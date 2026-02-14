@@ -1,0 +1,18 @@
+# IDE của JetBrains (IntelliJ IDEA)
+.idea/
+*.iml
+out/
+gen/
+
+# Thư mục build của Java/Spring Boot
+target/
+*.class
+
+# Thư mục thư viện của React (Rất nặng, không được đẩy lên)
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# Các file môi trường bí mật (nếu có)
+.env
+.env.local
