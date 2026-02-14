@@ -8,38 +8,40 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/laptops")
-@CrossOrigin("*") // Cho phép Frontend (React) gọi API này
+@CrossOrigin("*")
 public class LaptopController {
+
     @Autowired
     private LaptopService laptopService;
 
+    // Lấy danh sách tất cả Laptop
     @GetMapping
     public List<Laptop> getAll() {
         return laptopService.getAllLaptops();
     }
 
+    // Thêm mới Laptop
     @PostMapping
     public Laptop create(@RequestBody Laptop laptop) {
         return laptopService.saveLaptop(laptop);
     }
 
-    // Lấy chi tiết: GET http://localhost:8080/api/laptops/{id}
+    // Lấy chi tiết 1 Laptop theo ID
     @GetMapping("/{id}")
     public Laptop getById(@PathVariable Long id) {
         return laptopService.getLaptopById(id);
     }
 
-    // Xóa: DELETE http://localhost:8080/api/laptops/{id}
+    // Xóa Laptop
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id) {
         laptopService.deleteLaptop(id);
         return "Đã xóa laptop có ID: " + id;
     }
 
-    // Cập nhật: PUT http://localhost:8080/api/laptops/{id}
+    // Cập nhật Laptop (Đã đưa logic vào Service)
     @PutMapping("/{id}")
-    public Laptop update(@PathVariable Long id, @RequestBody Laptop laptop) {
-        laptop.setId(id); // Đảm bảo cập nhật đúng máy theo ID trên URL
-        return laptopService.updateLaptop(laptop);
+    public Laptop update(@PathVariable Long id, @RequestBody Laptop laptopDetails) {
+        return laptopService.updateLaptop(id, laptopDetails);
     }
 }

@@ -19,7 +19,7 @@ public class Laptop {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    private String image;
+    private String imageUrl;
 
     private Integer quantity;
 

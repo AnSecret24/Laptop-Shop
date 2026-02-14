@@ -31,8 +31,16 @@ public class LaptopService {
         laptopRepository.deleteById(id);
     }
 
-    // Cập nhật laptop (dùng chung hàm save vì JPA sẽ tự hiểu nếu có ID trùng thì là Update)
-    public Laptop updateLaptop(Laptop laptop) {
+    public Laptop updateLaptop(Long id, Laptop details) {
+        Laptop laptop = laptopRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy laptop ID: " + id));
+
+        laptop.setName(details.getName());
+        laptop.setPrice(details.getPrice());
+        laptop.setDescription(details.getDescription());
+        laptop.setQuantity(details.getQuantity());
+        laptop.setImageUrl(details.getImageUrl());
+
         return laptopRepository.save(laptop);
     }
 }
